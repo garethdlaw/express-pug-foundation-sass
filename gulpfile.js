@@ -49,10 +49,10 @@ function sass() {
         autoprefixer(),
     ].filter(Boolean);
 
-    return gulp.src('src/public/scss/app.scss')
+    return gulp.src(PATHS.sass.project.main)
         .pipe($.sourcemaps.init())
         .pipe($.sass({
-            includePaths: PATHS.sass
+            includePaths: PATHS.sass.node_modules
         })
             .on('error', $.sass.logError))
         .pipe($.postcss(postCssPlugins))
@@ -97,5 +97,20 @@ function javascript() {
 }
 
 
+//watch files
+function watch(){
+    gulp.watch(PATHS.assets, copy_assets);
+    gulp.watch(PATHS.static, copy_static);
+    gulp.watch(PATHS.entries, javascript);
+    gulp.watch(PATHS.sass.project.directories, sass)
+}
+
+function serve(){
+    $.nodemon({
+        script: PATHS.dist + '/' +PATHS.www
+    })
+}
+
 // commands
 exports.build = gulp.parallel(javascript, sass, copy_assets, copy_static);
+exports.dev_server = gulp.parallel(watch, serve)

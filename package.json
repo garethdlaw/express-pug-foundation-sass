@@ -5,10 +5,14 @@
   "repository": "https://github.com/garethdlaw/express-pug-foundation-sass.git",
   "author": "Gareth Law",
   "license": "MIT",
+  "scripts": {
+    "devstart": ""
+  },
   "dependencies": {
     "cookie-parser": "^1.4.5",
     "express": "^4.17.1",
     "foundation-sites": "^6.6.3",
+    "gulp-nodemon": "^2.5.0",
     "http-errors": "^1.8.0",
     "jquery": "^3.5.1",
     "morgan": "^1.10.0",
